@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>824A2AC1-FA21-42CE-9E7F-318E4E5C2CEB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>732DFFA9960E8447A6B608531BAD56AA2B3C3D56</key>
+		<string>https://github.com/exilias/BeforAfter.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BeforAfter/BeforAfter.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>732DFFA9960E8447A6B608531BAD56AA2B3C3D56</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/exilias/BeforAfter.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>732DFFA9960E8447A6B608531BAD56AA2B3C3D56</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>732DFFA9960E8447A6B608531BAD56AA2B3C3D56</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BeforAfter</string>
+		</dict>
+	</array>
+</dict>
+</plist>
