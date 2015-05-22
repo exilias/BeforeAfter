@@ -10,12 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var placeholderView: UIView!
     
+    @IBOutlet weak var animatedImageView: FLAnimatedImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let animatedImage = FLAnimatedImage(GIFData: NSData(contentsOfURL: NSURL(string: "http://raphaelschaad.com/static/nyan.gif")!))
+        animatedImageView.animatedImage = animatedImage
     }
 
     override func didReceiveMemoryWarning() {

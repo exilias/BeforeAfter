@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mKN-R5-t7V">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F2H-OQ-14o">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F2H-OQ-14o" customClass="FLAnimatedImageView">
                                 <rect key="frame" x="166" y="203" width="268" height="194"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -32,11 +33,72 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="placeholderView" destination="F2H-OQ-14o" id="2cX-ng-LjR"/>
+                        <outlet property="animatedImageView" destination="F2H-OQ-14o" id="HN0-e2-xt0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Table Style Sample View Controller-->
+        <scene sceneID="cx5-c5-q6l">
+            <objects>
+                <viewController id="mKN-R5-t7V" customClass="TableStyleSampleViewController" customModule="BeforAfter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kih-CO-ay1"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bv7-mL-bhb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sdp-pX-2oh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Gwj-rn-XJF">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="200" id="wDI-0G-guU" customClass="TableStyleSampleViewCell" customModule="BeforAfter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wDI-0G-guU" id="5NK-b7-aT8">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MtF-0b-DYx" customClass="FLAnimatedImageView">
+                                                    <rect key="frame" x="8" y="8" width="584" height="183"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="MtF-0b-DYx" firstAttribute="top" secondItem="5NK-b7-aT8" secondAttribute="topMargin" id="QYO-iR-EO2"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="MtF-0b-DYx" secondAttribute="trailing" id="aOi-di-u7u"/>
+                                                <constraint firstItem="MtF-0b-DYx" firstAttribute="leading" secondItem="5NK-b7-aT8" secondAttribute="leadingMargin" id="bko-Ky-n6l"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="MtF-0b-DYx" secondAttribute="bottom" id="lfK-NS-iBc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="animatedImageView" destination="MtF-0b-DYx" id="uVf-tX-O73"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="mKN-R5-t7V" id="tAj-xd-I8N"/>
+                                    <outlet property="delegate" destination="mKN-R5-t7V" id="EaO-O7-CBx"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Gwj-rn-XJF" firstAttribute="top" secondItem="Sdp-pX-2oh" secondAttribute="topMargin" id="Hn9-R8-Nma"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Gwj-rn-XJF" secondAttribute="trailing" constant="-16" id="Ss9-up-dIU"/>
+                            <constraint firstItem="Bv7-mL-bhb" firstAttribute="top" secondItem="Gwj-rn-XJF" secondAttribute="bottom" id="hBJ-cD-55P"/>
+                            <constraint firstItem="Gwj-rn-XJF" firstAttribute="leading" secondItem="Sdp-pX-2oh" secondAttribute="leadingMargin" constant="-16" id="y5x-BN-x04"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Gwj-rn-XJF" id="hgt-WN-QA0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JSz-YI-d7R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="881" y="377"/>
         </scene>
     </scenes>
 </document>

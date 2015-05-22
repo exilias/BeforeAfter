@@ -14,6 +14,7 @@
 		4736627C1B0FAC100082953F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4736627B1B0FAC100082953F /* Images.xcassets */; };
 		4736627F1B0FAC100082953F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4736627D1B0FAC100082953F /* LaunchScreen.xib */; };
 		4736628B1B0FAC100082953F /* BeforAfterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736628A1B0FAC100082953F /* BeforAfterTests.swift */; };
+		4736629B1B0FB04C0082953F /* TableStyleSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736629A1B0FB04C0082953F /* TableStyleSampleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		473662891B0FAC100082953F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4736628A1B0FAC100082953F /* BeforAfterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforAfterTests.swift; sourceTree = "<group>"; };
 		473662961B0FAEA50082953F /* BeforAfter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeforAfter-Bridging-Header.h"; sourceTree = "<group>"; };
+		4736629A1B0FB04C0082953F /* TableStyleSampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableStyleSampleViewController.swift; sourceTree = "<group>"; };
 		A42D4C2206A5CC442450B235 /* libPods-BeforAfter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeforAfter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				473662761B0FAC100082953F /* ViewController.swift */,
+				4736629A1B0FB04C0082953F /* TableStyleSampleViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 			files = (
 				473662771B0FAC100082953F /* ViewController.swift in Sources */,
 				473662751B0FAC100082953F /* AppDelegate.swift in Sources */,
+				4736629B1B0FB04C0082953F /* TableStyleSampleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
