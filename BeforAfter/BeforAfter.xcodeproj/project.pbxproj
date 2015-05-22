@@ -39,6 +39,7 @@
 		473662841B0FAC100082953F /* BeforAfterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeforAfterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		473662891B0FAC100082953F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4736628A1B0FAC100082953F /* BeforAfterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforAfterTests.swift; sourceTree = "<group>"; };
+		473662961B0FAEA50082953F /* BeforAfter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeforAfter-Bridging-Header.h"; sourceTree = "<group>"; };
 		A42D4C2206A5CC442450B235 /* libPods-BeforAfter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeforAfter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -106,6 +107,7 @@
 		473662721B0FAC100082953F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				473662961B0FAEA50082953F /* BeforAfter-Bridging-Header.h */,
 				473662731B0FAC100082953F /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -416,9 +418,12 @@
 			baseConfigurationReference = 40980B33834C5927CE69A780 /* Pods-BeforAfter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = BeforAfter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BeforAfter/BeforAfter-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -427,9 +432,11 @@
 			baseConfigurationReference = 1F7740CBEEBF9E81165FFF23 /* Pods-BeforAfter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = BeforAfter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BeforAfter/BeforAfter-Bridging-Header.h";
 			};
 			name = Release;
 		};
