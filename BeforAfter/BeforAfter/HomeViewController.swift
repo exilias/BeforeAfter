@@ -33,3 +33,22 @@ class HomeViewController: UIViewController {
     */
 
 }
+
+
+class HomeViewTableCell: UITableViewCell {
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var commentButton: UIButton!
+    
+    
+    @IBAction func didTouchLikeButton(sender: AnyObject) {
+        println("like")
+    }
+    
+    
+    @IBAction func didTouchCommentButton(sender: AnyObject) {
+        println("comment")
+    }
+}
