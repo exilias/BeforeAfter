@@ -7,29 +7,104 @@
 //
 
 import UIKit
+import ImageIO
+import MobileCoreServices
 
 class CameraViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private var images: [UIImage] = []
+    private var cameraManager = CameraManager.new()
+    private var timer: NSTimer?
+    private var state = State.Init
+    private var gifPath: String?
+    
+    @IBOutlet weak var previewView: UIView!
+    @IBOutlet weak var takeButton: UIButton!
+    
+    
+    enum State {
+        case Init, Recording, Complete
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    // MARK: - View cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
-    */
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        cameraManager.setPreview(previewView)
+    }
 
+    
+    // MARK: - UI
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    
+    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
+        return .Slide
+    }
+    
+    
+    // MARK: - User interaction
+    
+    @IBAction func didTouchTakeButton(sender: AnyObject) {
+        switch state {
+        case .Init:
+            state = .Recording
+            takeButton.setTitle("完了", forState: .Normal)
+            timer = NSTimer(timeInterval: 0.5, target: self, selector: Selector("takePhoto"), userInfo: nil, repeats: true)
+            NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
+            
+        case .Recording:
+            state = .Complete
+            takeButton.setTitle("送信", forState: .Normal)
+            timer?.invalidate()
+            timer = nil
+            createGIF()
+            
+        case .Complete:
+            break
+        }
+    }
+    
+    
+    // MARK: - Camera
+    
+    func takePhoto() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            self.images += [self.cameraManager.rotatedVideoImage()]
+            return
+        })
+    }
+    
+    
+    private func createGIF() {
+        if let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).last?.stringByAppendingPathComponent("\(arc4random_uniform(20209449)).gif") {
+            let frameProperties: [String: AnyObject] = [kCGImagePropertyGIFDelayTime as String: NSNumber(int: 2)]
+            let gifProperties: [String: AnyObject] = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFLoopCount as String: NSNumber(int: 0)]]
+            
+            let destination = CGImageDestinationCreateWithURL(NSURL(fileURLWithPath: path), kUTTypeGIF, images.count, nil)
+            
+            for image in images {
+                CGImageDestinationAddImage(destination, image.CGImage, frameProperties)
+            }
+            
+            CGImageDestinationSetProperties(destination, gifProperties)
+            CGImageDestinationFinalize(destination)
+            
+            var animatedImageView = FLAnimatedImageView(frame: previewView.bounds)
+            animatedImageView.animatedImage = FLAnimatedImage(GIFData: NSData(contentsOfFile: path))
+            previewView.addSubview(animatedImageView)
+            
+            gifPath = path
+        }
+    }
+    
 }

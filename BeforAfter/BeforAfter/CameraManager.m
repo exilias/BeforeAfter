@@ -220,7 +220,7 @@ return nil;
     
   	self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:captureSession];
 	[self.previewLayer setBackgroundColor:[[UIColor blackColor] CGColor]];
-    [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
+    [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     
     
     [self setupImageCapture];

@@ -32,7 +32,7 @@ class CreateGifSampleViewController: UIViewController {
     
     // MARK: - User interaction
     
-    @IBAction func didTouchTakeButton(sender: AnyObject) {        
+    @IBAction func didTouchTakeButton(sender: AnyObject) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
             self.images += [self.cameraManager.rotatedVideoImage()]
             return

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QyO-uy-6jH">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--ホーム-->
@@ -51,8 +52,73 @@
                     <view key="view" contentMode="scaleToFill" id="fta-g1-u2Z">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rya-UH-2rQ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rya-UH-2rQ" secondAttribute="height" multiplier="1:1" id="ZYA-5h-5Th"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfB-Ws-PNM">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="3oa-82-cFF"/>
+                                    <constraint firstAttribute="width" constant="71" id="eDA-FR-PJ7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
+                                <state key="normal" title="撮影">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3oa-82-cFF"/>
+                                        <exclude reference="eDA-FR-PJ7"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="3oa-82-cFF"/>
+                                        <include reference="eDA-FR-PJ7"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="didTouchTakeButton:" destination="pl1-51-O0J" eventType="touchUpInside" id="XbO-J3-jCd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20784313976764679" green="0.20784313976764679" blue="0.20784313976764679" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="rya-UH-2rQ" secondAttribute="trailing" id="4VS-Z8-kNx"/>
+                            <constraint firstItem="xYL-tJ-dnT" firstAttribute="top" secondItem="nfB-Ws-PNM" secondAttribute="bottom" constant="20" id="Ffm-tX-tu0"/>
+                            <constraint firstItem="rya-UH-2rQ" firstAttribute="leading" secondItem="fta-g1-u2Z" secondAttribute="leading" id="Smy-YP-BH5"/>
+                            <constraint firstAttribute="centerX" secondItem="nfB-Ws-PNM" secondAttribute="centerX" id="jWj-lU-Ram"/>
+                            <constraint firstItem="rya-UH-2rQ" firstAttribute="top" secondItem="fta-g1-u2Z" secondAttribute="top" id="mqK-2n-Xpa"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="nfB-Ws-PNM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="jWj-lU-Ram"/>
+                                <exclude reference="Ffm-tX-tu0"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="nfB-Ws-PNM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="jWj-lU-Ram"/>
+                                <include reference="Ffm-tX-tu0"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="previewView" destination="rya-UH-2rQ" id="AD6-hB-1L2"/>
+                        <outlet property="takeButton" destination="nfB-Ws-PNM" id="fHF-oc-nSo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4KN-eL-eRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
