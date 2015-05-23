@@ -8,6 +8,8 @@
 
 import UIKit
 import AVFoundation
+import ImageIO
+import MobileCoreServices
 
 
 class CreateGifSampleViewController: UIViewController {
