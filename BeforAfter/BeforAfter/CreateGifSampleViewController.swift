@@ -7,32 +7,98 @@
 //
 
 import UIKit
+import AVFoundation
+
 
 class CreateGifSampleViewController: UIViewController {
 
-    @IBOutlet weak var previewView: UIView!
+    private var images: [UIImage] = []
     
+    private var previewLayer: AVCaptureVideoPreviewLayer!
+    private var videoInput: AVCaptureInput!
+    private var captureSession: AVCaptureSession!
+    private var imageOutput: AVCaptureStillImageOutput!
+    private var captureDevice: AVCaptureDevice!
+    
+    @IBOutlet weak var previewView: UIView!
+    @IBOutlet weak var animatedImageView: FLAnimatedImageView!
+    
+    
+    // MARK: - View cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        configureCamera()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        previewLayer.frame = previewView.bounds;
     }
-    */
-
+    
+    
+    deinit {
+        captureSession.removeInput(videoInput)
+        captureSession.removeOutput(imageOutput)
+        captureSession.stopRunning()
+    }
+    
+    
+    // MARK: - User interaction
+    
+    @IBAction func didTouchTakeButton(sender: AnyObject) {
+        let connection = imageOutput.connections.last as! AVCaptureConnection
+        
+        imageOutput.captureStillImageAsynchronouslyFromConnection(connection, completionHandler: { (imageDataSampleBuffer: CMSampleBuffer!, error: NSError!) -> Void in
+            let data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
+            if let image = UIImage(data: data) {
+                self.images += [image]
+            }
+        })
+    }
+    
+    
+    @IBAction func didTouchGifButton(sender: AnyObject) {
+        
+    }
+    
+    
+    // MARK: - Camera
+    
+    private func configureCamera() {
+        // カメラデバイスの初期化
+        captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        
+        // 入力の初期化
+        var error: NSError?
+        videoInput = AVCaptureDeviceInput.deviceInputWithDevice(self.captureDevice, error: &error) as! AVCaptureInput
+        
+        if let unwrappedError = error {
+            println("ERROR: CameraViewController - configureCamera - AVCaptureDeviceInput\nDetail: \(error)")
+            return
+        }
+        
+        // セッションの初期化
+        captureSession = AVCaptureSession()
+        captureSession.addInput(videoInput)
+        captureSession.beginConfiguration()
+        captureSession.sessionPreset = AVCaptureSessionPreset640x480
+        captureSession.commitConfiguration()
+        
+        // プレビュー表示
+        previewLayer = AVCaptureVideoPreviewLayer.layerWithSession(captureSession) as! AVCaptureVideoPreviewLayer
+        previewLayer.connection.automaticallyAdjustsVideoMirroring = false
+        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        previewView.layer.insertSublayer(previewLayer, atIndex: 0)
+        
+        // 出力の初期化
+        imageOutput = AVCaptureStillImageOutput()
+        captureSession.addOutput(imageOutput)
+        
+        // セッション開始
+        captureSession.startRunning()
+    }
 }
