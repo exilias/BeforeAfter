@@ -73,6 +73,7 @@ class CameraViewController: UIViewController {
             createGIF()
             
         case .Complete:
+            BAAPIManager.uploadGIFWithPath(gifPath, success: nil, failure: nil)
             break
         }
     }
