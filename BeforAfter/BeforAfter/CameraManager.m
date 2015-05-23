@@ -157,7 +157,7 @@
 
    if(super.init){
 
-       [self setupAVCapture:AVCaptureSessionPreset640x480];
+       [self setupAVCapture:AVCaptureSessionPreset352x288];
     return self;
    }
 return nil;

@@ -62,7 +62,7 @@ class CameraViewController: UIViewController {
         switch state {
         case .Init:
             state = .Recording
-            timer = NSTimer(timeInterval: 0.1, target: self, selector: Selector("takePhoto"), userInfo: nil, repeats: true)
+            timer = NSTimer(timeInterval: 0.5, target: self, selector: Selector("takePhoto"), userInfo: nil, repeats: true)
             NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
             headerView.backgroundColor = takeButton.titleLabel?.textColor
             
@@ -122,10 +122,12 @@ class CameraViewController: UIViewController {
                     counter++
                     if counter == div {
                         photoCount++
+                        println("count: \(photoCount), div: \(div)")
+                        counter = 0
                     }
                 }
                 
-                let destination = CGImageDestinationCreateWithURL(NSURL(fileURLWithPath: path), kUTTypeGIF, photoCount-1, nil)
+                let destination = CGImageDestinationCreateWithURL(NSURL(fileURLWithPath: path), kUTTypeGIF, photoCount, nil)
                 
                 var c = 0
                 counter = 0

@@ -66,6 +66,7 @@ class HomeViewTableCell: UITableViewCell {
     var timeline: Timeline? {
         didSet {
             if let unwrappedTimeline = timeline {
+                self.animatedImageView.animatedImage = nil
                 animatedImageURL = unwrappedTimeline.gifURL
                 nameLabel.text = unwrappedTimeline.userName
             }
@@ -75,14 +76,20 @@ class HomeViewTableCell: UITableViewCell {
     private var animatedImageURL: NSURL? {
         didSet {
             if let unwrappedURL = animatedImageURL {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                    let animatedImage = FLAnimatedImage(GIFData: NSData(contentsOfURL: unwrappedURL))
-                    
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.animatedImageView.animatedImage = animatedImage
-                        return
-                    })
+                
+                SDWebImageDownloader.sharedDownloader().downloadImageWithURL(unwrappedURL, options: SDWebImageDownloaderOptions.UseNSURLCache, progress: { (expectedSize: Int, receivedSize: Int) -> Void in
+                    //println("\()")
+                }, completed: { (image: UIImage!, data: NSData!, error: NSError!, finished: Bool) -> Void in
+                    self.animatedImageView.animatedImage = FLAnimatedImage(GIFData: data)
                 })
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+//                    let animatedImage = FLAnimatedImage(GIFData: NSData(contentsOfURL: unwrappedURL))
+//                    
+//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                        self.animatedImageView.animatedImage = animatedImage
+//                        return
+//                    })
+//                })
             }
         }
     }
