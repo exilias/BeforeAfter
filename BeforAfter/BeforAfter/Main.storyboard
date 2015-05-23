@@ -333,13 +333,30 @@
                                     <outlet property="delegate" destination="CL5-ay-7T8" id="ixj-SG-rSn"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UsP-UY-sE1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UsP-UY-sE1">
                                 <rect key="frame" x="277" y="545" width="51" height="30"/>
-                                <state key="normal" title="camera">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="aLM-df-lcZ">
+                                        <variation key="widthClass=compact" constant="70"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="80" id="qr1-Yv-0tN">
+                                        <variation key="widthClass=compact" constant="70"/>
+                                    </constraint>
+                                </constraints>
+                                <state key="normal" image="HomeView_Camera">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="174" y="285" width="51" height="30"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="aLM-df-lcZ"/>
+                                        <exclude reference="qr1-Yv-0tN"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="aLM-df-lcZ"/>
+                                        <include reference="qr1-Yv-0tN"/>
+                                    </mask>
                                 </variation>
                                 <connections>
                                     <segue destination="pl1-51-O0J" kind="presentation" id="ey3-uz-t92"/>
@@ -349,7 +366,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="O9F-pD-Zhy" firstAttribute="leading" secondItem="7Pj-oC-Yxg" secondAttribute="leading" id="GSb-2f-cti"/>
+                            <constraint firstAttribute="centerX" secondItem="UsP-UY-sE1" secondAttribute="centerX" id="OID-FR-Qdx"/>
                             <constraint firstItem="O9F-pD-Zhy" firstAttribute="top" secondItem="7Pj-oC-Yxg" secondAttribute="top" id="ede-LH-F0X"/>
+                            <constraint firstItem="sem-VL-vok" firstAttribute="top" secondItem="UsP-UY-sE1" secondAttribute="bottom" constant="20" id="gae-1r-oIM">
+                                <variation key="widthClass=compact" constant="10"/>
+                            </constraint>
                             <constraint firstAttribute="trailing" secondItem="O9F-pD-Zhy" secondAttribute="trailing" id="grp-My-62b"/>
                             <constraint firstItem="sem-VL-vok" firstAttribute="top" secondItem="O9F-pD-Zhy" secondAttribute="bottom" id="nZO-Io-OaD"/>
                         </constraints>
@@ -359,10 +380,12 @@
                                 <exclude reference="UsP-UY-sE1"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="nZO-Io-OaD"/>
                                 <exclude reference="GSb-2f-cti"/>
                                 <exclude reference="ede-LH-F0X"/>
                                 <exclude reference="grp-My-62b"/>
+                                <exclude reference="OID-FR-Qdx"/>
+                                <exclude reference="gae-1r-oIM"/>
+                                <exclude reference="nZO-Io-OaD"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -371,10 +394,12 @@
                                 <include reference="UsP-UY-sE1"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="nZO-Io-OaD"/>
                                 <include reference="GSb-2f-cti"/>
                                 <include reference="ede-LH-F0X"/>
                                 <include reference="grp-My-62b"/>
+                                <include reference="OID-FR-Qdx"/>
+                                <include reference="gae-1r-oIM"/>
+                                <include reference="nZO-Io-OaD"/>
                             </mask>
                         </variation>
                     </view>
@@ -406,14 +431,19 @@
                                     <constraint firstAttribute="width" secondItem="rya-UH-2rQ" secondAttribute="height" multiplier="1:1" id="ZYA-5h-5Th"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfB-Ws-PNM">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfB-Ws-PNM">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="59" id="3oa-82-cFF"/>
-                                    <constraint firstAttribute="width" constant="71" id="eDA-FR-PJ7"/>
+                                    <constraint firstAttribute="height" constant="59" id="3oa-82-cFF">
+                                        <variation key="widthClass=compact" constant="80"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="71" id="eDA-FR-PJ7">
+                                        <variation key="widthClass=compact" constant="80"/>
+                                    </constraint>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
-                                <state key="normal" title="撮影">
+                                <inset key="titleEdgeInsets" minX="0.0" minY="-40" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="aaaaa" image="CameraView_Shutter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -549,4 +579,8 @@
             <point key="canvasLocation" x="1051" y="-868"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CameraView_Shutter" width="133" height="133"/>
+        <image name="HomeView_Camera" width="166" height="166"/>
+    </resources>
 </document>
