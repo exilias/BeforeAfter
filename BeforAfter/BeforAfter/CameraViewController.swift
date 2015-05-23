@@ -95,27 +95,60 @@ class CameraViewController: UIViewController {
     
     
     private func createGIF() {
-        if let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).last?.stringByAppendingPathComponent("\(arc4random_uniform(20209449)).gif") {
-            let frameProperties: [String: AnyObject] = [kCGImagePropertyGIFDelayTime as String: NSNumber(float: 0.1)]
-            let gifProperties: [String: AnyObject] = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFLoopCount as String: NSNumber(int: 0)]]
-            
-            let destination = CGImageDestinationCreateWithURL(NSURL(fileURLWithPath: path), kUTTypeGIF, images.count, nil)
-            
-            for image in images {
-                CGImageDestinationAddImage(destination, image.CGImage, frameProperties)
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            if let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).last?.stringByAppendingPathComponent("\(arc4random_uniform(20209449)).gif") {
+                let frameProperties: [String: AnyObject] = [kCGImagePropertyGIFDelayTime as String: NSNumber(float: 0.1)]
+                let gifProperties: [String: AnyObject] = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFLoopCount as String: NSNumber(int: 0)]]
+                
+                
+                
+                var div = 1
+                if self.images.count > 50 {
+                    div = self.images.count / 50
+                    
+                    if div == 0 {
+                        div = 1
+                    }
+                }
+                
+                var counter = 0
+                var photoCount = 0
+                for image in self.images {
+                    counter++
+                    if counter == div {
+                        photoCount++
+                    }
+                }
+                
+                let destination = CGImageDestinationCreateWithURL(NSURL(fileURLWithPath: path), kUTTypeGIF, photoCount-1, nil)
+                
+                var c = 0
+                counter = 0
+                for image in self.images {
+                    counter++
+                    c++
+                    if counter == div {
+                        CGImageDestinationAddImage(destination, image.CGImage, frameProperties)
+                        counter = 0
+                        
+                        println("\(c)")
+                    }
+                }
+                
+                CGImageDestinationSetProperties(destination, gifProperties)
+                CGImageDestinationFinalize(destination)
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    var animatedImageView = FLAnimatedImageView(frame: self.previewView.bounds)
+                    animatedImageView.clipsToBounds = true
+                    animatedImageView.contentMode = .ScaleAspectFill
+                    animatedImageView.animatedImage = FLAnimatedImage(GIFData: NSData(contentsOfFile: path))
+                    self.previewView.addSubview(animatedImageView)
+                    
+                    self.gifPath = path
+                })
             }
-            
-            CGImageDestinationSetProperties(destination, gifProperties)
-            CGImageDestinationFinalize(destination)
-            
-            var animatedImageView = FLAnimatedImageView(frame: previewView.bounds)
-            animatedImageView.clipsToBounds = true
-            animatedImageView.contentMode = .ScaleAspectFill
-            animatedImageView.animatedImage = FLAnimatedImage(GIFData: NSData(contentsOfFile: path))
-            previewView.addSubview(animatedImageView)
-            
-            gifPath = path
-        }
+        })
     }
     
     
