@@ -7,7 +7,7 @@
         <!--ホーム-->
         <scene sceneID="9av-FT-6nG">
             <objects>
-                <viewController id="CL5-ay-7T8" sceneMemberID="viewController">
+                <viewController id="CL5-ay-7T8" customClass="HomeViewController" customModule="BeforAfter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CeS-he-I2a"/>
                         <viewControllerLayoutGuide type="bottom" id="sem-VL-vok"/>
@@ -40,10 +40,10 @@
             </objects>
             <point key="canvasLocation" x="1863" y="-868"/>
         </scene>
-        <!--View Controller-->
+        <!--Camera View Controller-->
         <scene sceneID="bN4-Xt-Rju">
             <objects>
-                <viewController id="pl1-51-O0J" sceneMemberID="viewController">
+                <viewController id="pl1-51-O0J" customClass="CameraViewController" customModule="BeforAfter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uWf-So-Iyc"/>
                         <viewControllerLayoutGuide type="bottom" id="xYL-tJ-dnT"/>

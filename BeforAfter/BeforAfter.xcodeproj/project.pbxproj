@@ -22,6 +22,8 @@
 		474CC1CE1B104CCE005B8D66 /* CameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 474CC1CD1B104CCE005B8D66 /* CameraManager.m */; };
 		474CC1D01B10500D005B8D66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 474CC1CF1B10500D005B8D66 /* Main.storyboard */; };
 		474CC1D51B105195005B8D66 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474CC1D41B105195005B8D66 /* BaseNavigationController.swift */; };
+		474CC1D71B1052A2005B8D66 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474CC1D61B1052A2005B8D66 /* HomeViewController.swift */; };
+		474CC1D91B1052AD005B8D66 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474CC1D81B1052AD005B8D66 /* CameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		474CC1CD1B104CCE005B8D66 /* CameraManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraManager.m; sourceTree = "<group>"; };
 		474CC1CF1B10500D005B8D66 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		474CC1D41B105195005B8D66 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		474CC1D61B1052A2005B8D66 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		474CC1D81B1052AD005B8D66 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		A42D4C2206A5CC442450B235 /* libPods-BeforAfter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeforAfter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -192,6 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				474CC1D41B105195005B8D66 /* BaseNavigationController.swift */,
+				474CC1D61B1052A2005B8D66 /* HomeViewController.swift */,
+				474CC1D81B1052AD005B8D66 /* CameraViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -348,6 +354,8 @@
 				474CC1C01B100960005B8D66 /* CreateGifSampleViewController.swift in Sources */,
 				473662751B0FAC100082953F /* AppDelegate.swift in Sources */,
 				4736629B1B0FB04C0082953F /* TableStyleSampleViewController.swift in Sources */,
+				474CC1D91B1052AD005B8D66 /* CameraViewController.swift in Sources */,
+				474CC1D71B1052A2005B8D66 /* HomeViewController.swift in Sources */,
 				474CC1CE1B104CCE005B8D66 /* CameraManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
