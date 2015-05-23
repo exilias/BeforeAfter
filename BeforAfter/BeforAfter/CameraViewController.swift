@@ -21,6 +21,7 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var takeButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var headerView: UIView!
     
     
     enum State {
@@ -63,6 +64,7 @@ class CameraViewController: UIViewController {
             state = .Recording
             timer = NSTimer(timeInterval: 0.1, target: self, selector: Selector("takePhoto"), userInfo: nil, repeats: true)
             NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
+            headerView.backgroundColor = takeButton.titleLabel?.textColor
             
         case .Recording:
             state = .Complete
@@ -71,6 +73,7 @@ class CameraViewController: UIViewController {
             timer?.invalidate()
             timer = nil
             createGIF()
+            headerView.backgroundColor = UIColor.clearColor()
             
         case .Complete:
             uploadPhoto()

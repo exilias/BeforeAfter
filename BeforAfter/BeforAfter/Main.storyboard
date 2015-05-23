@@ -444,8 +444,8 @@
                                 <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="-40" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="aaaaa" image="CameraView_Shutter">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="0.36862745098039218" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="1" green="0.36862745098039218" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -553,6 +553,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="closeButton" destination="utt-v7-kZr" id="v7Y-CD-Xav"/>
+                        <outlet property="headerView" destination="P9a-Qf-CZ1" id="x1R-LJ-i14"/>
                         <outlet property="previewView" destination="rya-UH-2rQ" id="AD6-hB-1L2"/>
                         <outlet property="takeButton" destination="nfB-Ws-PNM" id="fHF-oc-nSo"/>
                     </connections>
