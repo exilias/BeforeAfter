@@ -58,9 +58,11 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
   install_resource "ionicons/ionicons/ionicons.ttf"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
   install_resource "ionicons/ionicons/ionicons.ttf"
 fi
 
