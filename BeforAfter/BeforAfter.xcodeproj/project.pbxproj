@@ -15,6 +15,7 @@
 		4736627F1B0FAC100082953F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4736627D1B0FAC100082953F /* LaunchScreen.xib */; };
 		4736628B1B0FAC100082953F /* BeforAfterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736628A1B0FAC100082953F /* BeforAfterTests.swift */; };
 		4736629B1B0FB04C0082953F /* TableStyleSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736629A1B0FB04C0082953F /* TableStyleSampleViewController.swift */; };
+		474CC1C01B100960005B8D66 /* CreateGifSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474CC1BF1B100960005B8D66 /* CreateGifSampleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		4736628A1B0FAC100082953F /* BeforAfterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforAfterTests.swift; sourceTree = "<group>"; };
 		473662961B0FAEA50082953F /* BeforAfter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeforAfter-Bridging-Header.h"; sourceTree = "<group>"; };
 		4736629A1B0FB04C0082953F /* TableStyleSampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableStyleSampleViewController.swift; sourceTree = "<group>"; };
+		474CC1BF1B100960005B8D66 /* CreateGifSampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGifSampleViewController.swift; sourceTree = "<group>"; };
 		A42D4C2206A5CC442450B235 /* libPods-BeforAfter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeforAfter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -143,10 +145,19 @@
 		473662951B0FAE510082953F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				473662761B0FAC100082953F /* ViewController.swift */,
-				4736629A1B0FB04C0082953F /* TableStyleSampleViewController.swift */,
+				474CC1C11B100964005B8D66 /* Sample */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		474CC1C11B100964005B8D66 /* Sample */ = {
+			isa = PBXGroup;
+			children = (
+				473662761B0FAC100082953F /* ViewController.swift */,
+				4736629A1B0FB04C0082953F /* TableStyleSampleViewController.swift */,
+				474CC1BF1B100960005B8D66 /* CreateGifSampleViewController.swift */,
+			);
+			name = Sample;
 			sourceTree = "<group>";
 		};
 		4D595CC1908FE261404D343B /* Frameworks */ = {
@@ -293,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				473662771B0FAC100082953F /* ViewController.swift in Sources */,
+				474CC1C01B100960005B8D66 /* CreateGifSampleViewController.swift in Sources */,
 				473662751B0FAC100082953F /* AppDelegate.swift in Sources */,
 				4736629B1B0FB04C0082953F /* TableStyleSampleViewController.swift in Sources */,
 			);
