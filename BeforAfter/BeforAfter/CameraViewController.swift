@@ -96,7 +96,7 @@ class CameraViewController: UIViewController {
     
     private func createGIF() {
         if let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).last?.stringByAppendingPathComponent("\(arc4random_uniform(20209449)).gif") {
-            let frameProperties: [String: AnyObject] = [kCGImagePropertyGIFDelayTime as String: NSNumber(int: 2)]
+            let frameProperties: [String: AnyObject] = [kCGImagePropertyGIFDelayTime as String: NSNumber(float: 0.1)]
             let gifProperties: [String: AnyObject] = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFLoopCount as String: NSNumber(int: 0)]]
             
             let destination = CGImageDestinationCreateWithURL(NSURL(fileURLWithPath: path), kUTTypeGIF, images.count, nil)
@@ -109,6 +109,8 @@ class CameraViewController: UIViewController {
             CGImageDestinationFinalize(destination)
             
             var animatedImageView = FLAnimatedImageView(frame: previewView.bounds)
+            animatedImageView.clipsToBounds = true
+            animatedImageView.contentMode = .ScaleAspectFill
             animatedImageView.animatedImage = FLAnimatedImage(GIFData: NSData(contentsOfFile: path))
             previewView.addSubview(animatedImageView)
             
