@@ -6,3 +6,4 @@
 #import <ionicons/IonIcons.h>
 
 #import "CameraManager.h"
+#import "BAAPIManager.h"
