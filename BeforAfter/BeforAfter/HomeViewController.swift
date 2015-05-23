@@ -10,6 +10,8 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    private var timelines: [Timeline] = []
+    
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -19,24 +21,34 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewWillAppear(animated)
         
         BAAPIManager.getTimelineWithSuccess({ (timelines: [AnyObject]!) -> Void in
-            println("\(timelines)")
-            return
+            var timelinesBuf: [Timeline] = []
+            for timeline in timelines {
+                if let timelineDictionary = timeline as? NSDictionary {
+                    timelinesBuf += [Timeline(dictionary: timelineDictionary)]
+                }
+            }
+            
+            self.timelines = timelinesBuf
+            
+            self.tableView.reloadData()
         }, failure: { (error: NSError?) -> Void in
             println("ERROR: \(error)")
             return
         })
     }
+    
+    
     // MARK: - TableView data source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return timelines.count
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("MainCell", forIndexPath: indexPath) as! HomeViewTableCell
         
-        cell.animatedImageURL = NSURL(string: "http://raphaelschaad.com/static/nyan.gif")
+        cell.timeline = timelines[indexPath.row]
         
         return cell
     }
@@ -46,14 +58,21 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return tableView.frame.size.width + 37 + 60
     }
-    
-    
 }
 
 
 class HomeViewTableCell: UITableViewCell {
     
-    var animatedImageURL: NSURL? {
+    var timeline: Timeline? {
+        didSet {
+            if let unwrappedTimeline = timeline {
+                animatedImageURL = unwrappedTimeline.gifURL
+                nameLabel.text = unwrappedTimeline.userName
+            }
+        }
+    }
+    
+    private var animatedImageURL: NSURL? {
         didSet {
             if let unwrappedURL = animatedImageURL {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
@@ -88,5 +107,23 @@ class HomeViewTableCell: UITableViewCell {
     
     @IBAction func didTouchCommentButton(sender: AnyObject) {
         println("comment")
+    }
+}
+
+
+
+class Timeline {
+    var gifURL: NSURL
+    var likeNum: Int
+    var title: String?
+    var description: String?
+    var userName: String?
+    
+    init(dictionary: NSDictionary) {
+        gifURL = NSURL(string: dictionary["pic"]! as! String)!
+        likeNum = dictionary["like_num"]!.integerValue
+        title = dictionary["title"] as? String
+        description = dictionary["description"] as? String
+        userName = dictionary["user_name"] as? String
     }
 }
