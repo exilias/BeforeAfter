@@ -454,6 +454,7 @@
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
+                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                     <mask key="constraints">
                                         <include reference="3oa-82-cFF"/>
                                         <include reference="eDA-FR-PJ7"/>

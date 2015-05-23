@@ -61,13 +61,13 @@ class CameraViewController: UIViewController {
         switch state {
         case .Init:
             state = .Recording
-            takeButton.setTitle("完了", forState: .Normal)
             timer = NSTimer(timeInterval: 0.1, target: self, selector: Selector("takePhoto"), userInfo: nil, repeats: true)
             NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
             
         case .Recording:
             state = .Complete
             takeButton.setTitle("送信", forState: .Normal)
+            takeButton.setImage(nil, forState: .Normal)
             timer?.invalidate()
             timer = nil
             createGIF()
@@ -95,6 +95,8 @@ class CameraViewController: UIViewController {
     
     
     private func createGIF() {
+        SVProgressHUD.showWithStatus("動画作成中", maskType: .Black)
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
             if let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).last?.stringByAppendingPathComponent("\(arc4random_uniform(20209449)).gif") {
                 let frameProperties: [String: AnyObject] = [kCGImagePropertyGIFDelayTime as String: NSNumber(float: 0.1)]
@@ -146,6 +148,8 @@ class CameraViewController: UIViewController {
                     self.previewView.addSubview(animatedImageView)
                     
                     self.gifPath = path
+                    
+                    SVProgressHUD.showSuccessWithStatus("完了しました！")
                 })
             }
         })
