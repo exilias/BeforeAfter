@@ -62,7 +62,7 @@ class CameraViewController: UIViewController {
         case .Init:
             state = .Recording
             takeButton.setTitle("完了", forState: .Normal)
-            timer = NSTimer(timeInterval: 0.5, target: self, selector: Selector("takePhoto"), userInfo: nil, repeats: true)
+            timer = NSTimer(timeInterval: 0.1, target: self, selector: Selector("takePhoto"), userInfo: nil, repeats: true)
             NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
             
         case .Recording:

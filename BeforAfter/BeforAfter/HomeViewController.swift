@@ -97,6 +97,7 @@ class HomeViewTableCell: UITableViewCell {
     override func awakeFromNib() {
         likeButton.setTitle(ion_ios_heart_outline, forState: .Normal)
         commentButton.setTitle(ion_ios_chatbubble_outline, forState: .Normal)
+        animatedImageView.contentMode = .ScaleAspectFill
     }
     
     
