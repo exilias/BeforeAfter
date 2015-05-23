@@ -73,7 +73,7 @@ class CameraViewController: UIViewController {
             createGIF()
             
         case .Complete:
-            BAAPIManager.uploadGIFWithPath(gifPath, success: nil, failure: nil)
+            uploadPhoto()
             break
         }
     }
@@ -116,4 +116,17 @@ class CameraViewController: UIViewController {
         }
     }
     
+    
+    private func uploadPhoto() {
+        SVProgressHUD.showWithStatus("送信中...", maskType: .Black)
+        
+        BAAPIManager.uploadGIFWithPath(gifPath, success: { () -> Void in
+            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                SVProgressHUD.showSuccessWithStatus("投稿しました！")
+            })
+        }, failure: { (error: NSError?) -> Void in
+            SVProgressHUD.showErrorWithStatus("失敗しました")
+            println("ERROR: \(error)")
+        })
+    }
 }

@@ -8,18 +8,13 @@
 
 #import "BAAPIManager.h"
 
-#import <SVProgressHUD/SVProgressHUD.h>
 #import <AFNetworking/AFNetworking.h>
 
 
 @implementation BAAPIManager
 
-+ (void)uploadGIFWithPath:(NSString *)path success:(void (^)(void))success failure:(void (^)(NSError *error))failure
++ (void)uploadGIFWithPath:(NSString *)path success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 {
-    // set network activity indicator
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [SVProgressHUD showWithStatus:@"通信中" maskType:SVProgressHUDMaskTypeBlack];
-
     // create NSData from URL
     NSData *imageData = [[NSData alloc] initWithContentsOfFile:path];
     
@@ -40,27 +35,17 @@
                                                                    }
                                                                                        error:NULL];
     
-    AFHTTPRequestOperation *operation = [manager HTTPRequestOperationWithRequest:request
-                                                                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                                                             /// dismiss indicator
-                                                                             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                                                                             
-//                                                                             // dismiss view, show success
-//                                                                             [self dismissViewControllerAnimated:YES completion:^{
-//                                                                                 [SVProgressHUD showSuccessWithStatus:@"投稿しました"];
-//                                                                             }];
-                                                                             [SVProgressHUD showSuccessWithStatus:@"投稿しました"];
-                                                                             NSLog(@"success: %@, %@", [responseObject class], responseObject);
-                                                                             
-                                                                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                                             //NSLog(@"Error: %@", error);
-                                                                             
-                                                                             [SVProgressHUD showErrorWithStatus:@"アップロード失敗．．．"];
-                                                                         }];
-    
+    AFHTTPRequestOperation *operation = [manager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (success) {
+            success();
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
     
     [manager.operationQueue addOperation:operation];
-    
 }
 
 @end
