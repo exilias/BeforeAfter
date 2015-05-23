@@ -3,5 +3,6 @@
 //
 
 #import <FLAnimatedImage/FLAnimatedImage.h>
+#import <ionicons/IonIcons.h>
 
 #import "CameraManager.h"

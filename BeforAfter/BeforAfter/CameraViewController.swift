@@ -20,6 +20,7 @@ class CameraViewController: UIViewController {
     
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var takeButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
     
     
     enum State {
@@ -30,6 +31,8 @@ class CameraViewController: UIViewController {
     // MARK: - View cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        closeButton.setTitle(ion_close, forState: .Normal)
     }
     
     
@@ -72,6 +75,11 @@ class CameraViewController: UIViewController {
         case .Complete:
             break
         }
+    }
+    
+    
+    @IBAction func didTouchCloseButton(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     

@@ -4,6 +4,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="ionicons.ttf">
+            <string>Ionicons</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--ホーム-->
         <scene sceneID="9av-FT-6nG">
@@ -87,20 +92,70 @@
                                     <action selector="didTouchTakeButton:" destination="pl1-51-O0J" eventType="touchUpInside" id="XbO-J3-jCd"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P9a-Qf-CZ1">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utt-v7-kZr">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <fontDescription key="fontDescription" name="Ionicons" family="Ionicons" pointSize="30"/>
+                                        <state key="normal" title="■">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="0.0" width="46" height="44"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="didTouchCloseButton:" destination="pl1-51-O0J" eventType="touchUpInside" id="y5U-9K-mct"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="5GX-hB-HxB"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="utt-v7-kZr"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="5GX-hB-HxB"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="utt-v7-kZr"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="5GX-hB-HxB"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.20784313976764679" green="0.20784313976764679" blue="0.20784313976764679" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="rya-UH-2rQ" secondAttribute="trailing" id="4VS-Z8-kNx"/>
                             <constraint firstItem="xYL-tJ-dnT" firstAttribute="top" secondItem="nfB-Ws-PNM" secondAttribute="bottom" constant="20" id="Ffm-tX-tu0"/>
+                            <constraint firstItem="rya-UH-2rQ" firstAttribute="top" secondItem="P9a-Qf-CZ1" secondAttribute="bottom" id="HWc-nQ-0Si"/>
                             <constraint firstItem="rya-UH-2rQ" firstAttribute="leading" secondItem="fta-g1-u2Z" secondAttribute="leading" id="Smy-YP-BH5"/>
+                            <constraint firstItem="P9a-Qf-CZ1" firstAttribute="top" secondItem="uWf-So-Iyc" secondAttribute="bottom" id="bId-r9-0La"/>
                             <constraint firstAttribute="centerX" secondItem="nfB-Ws-PNM" secondAttribute="centerX" id="jWj-lU-Ram"/>
-                            <constraint firstItem="rya-UH-2rQ" firstAttribute="top" secondItem="fta-g1-u2Z" secondAttribute="top" id="mqK-2n-Xpa"/>
+                            <constraint firstItem="rya-UH-2rQ" firstAttribute="top" secondItem="fta-g1-u2Z" secondAttribute="top" id="mqK-2n-Xpa">
+                                <variation key="widthClass=compact" constant="44"/>
+                            </constraint>
+                            <constraint firstAttribute="trailing" secondItem="P9a-Qf-CZ1" secondAttribute="trailing" id="p5i-5E-ZQH"/>
+                            <constraint firstItem="P9a-Qf-CZ1" firstAttribute="leading" secondItem="fta-g1-u2Z" secondAttribute="leading" id="sKJ-t2-5nQ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="nfB-Ws-PNM"/>
+                                <exclude reference="P9a-Qf-CZ1"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="bId-r9-0La"/>
+                                <exclude reference="p5i-5E-ZQH"/>
+                                <exclude reference="sKJ-t2-5nQ"/>
+                                <exclude reference="HWc-nQ-0Si"/>
                                 <exclude reference="jWj-lU-Ram"/>
                                 <exclude reference="Ffm-tX-tu0"/>
                             </mask>
@@ -108,14 +163,24 @@
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="nfB-Ws-PNM"/>
+                                <include reference="P9a-Qf-CZ1"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="bId-r9-0La"/>
+                                <include reference="p5i-5E-ZQH"/>
+                                <include reference="sKJ-t2-5nQ"/>
+                                <include reference="HWc-nQ-0Si"/>
+                                <exclude reference="mqK-2n-Xpa"/>
                                 <include reference="jWj-lU-Ram"/>
                                 <include reference="Ffm-tX-tu0"/>
                             </mask>
                         </variation>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="closeButton" destination="utt-v7-kZr" id="v7Y-CD-Xav"/>
                         <outlet property="previewView" destination="rya-UH-2rQ" id="AD6-hB-1L2"/>
                         <outlet property="takeButton" destination="nfB-Ws-PNM" id="fHF-oc-nSo"/>
                     </connections>
