@@ -15,12 +15,7 @@ import MobileCoreServices
 class CreateGifSampleViewController: UIViewController {
 
     private var images: [UIImage] = []
-    
-    private var previewLayer: AVCaptureVideoPreviewLayer!
-    private var videoInput: AVCaptureInput!
-    private var captureSession: AVCaptureSession!
-    private var imageOutput: AVCaptureStillImageOutput!
-    private var captureDevice: AVCaptureDevice!
+    private var cameraManager = CameraManager.new()
     
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var animatedImageView: FLAnimatedImageView!
@@ -31,34 +26,16 @@ class CreateGifSampleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureCamera()
-    }
-    
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        previewLayer.frame = previewView.bounds;
-    }
-    
-    
-    deinit {
-        captureSession.removeInput(videoInput)
-        captureSession.removeOutput(imageOutput)
-        captureSession.stopRunning()
+        cameraManager.setPreview(previewView)
     }
     
     
     // MARK: - User interaction
     
-    @IBAction func didTouchTakeButton(sender: AnyObject) {
-        let connection = imageOutput.connections.last as! AVCaptureConnection
-        
-        imageOutput.captureStillImageAsynchronouslyFromConnection(connection, completionHandler: { (imageDataSampleBuffer: CMSampleBuffer!, error: NSError!) -> Void in
-            let data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
-            if let image = UIImage(data: data) {
-                self.images += [image]
-            }
+    @IBAction func didTouchTakeButton(sender: AnyObject) {        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            self.images += [self.cameraManager.rotatedVideoImage()]
+            return
         })
     }
     
@@ -80,41 +57,5 @@ class CreateGifSampleViewController: UIViewController {
             animatedImageView.animatedImage = FLAnimatedImage(GIFData: NSData(contentsOfFile: path))
         }
     }
-    
-    
-    // MARK: - Camera
-    
-    private func configureCamera() {
-        // カメラデバイスの初期化
-        captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-        
-        // 入力の初期化
-        var error: NSError?
-        videoInput = AVCaptureDeviceInput.deviceInputWithDevice(self.captureDevice, error: &error) as! AVCaptureInput
-        
-        if let unwrappedError = error {
-            println("ERROR: CameraViewController - configureCamera - AVCaptureDeviceInput\nDetail: \(error)")
-            return
-        }
-        
-        // セッションの初期化
-        captureSession = AVCaptureSession()
-        captureSession.addInput(videoInput)
-        captureSession.beginConfiguration()
-        captureSession.sessionPreset = AVCaptureSessionPreset640x480
-        captureSession.commitConfiguration()
-        
-        // プレビュー表示
-        previewLayer = AVCaptureVideoPreviewLayer.layerWithSession(captureSession) as! AVCaptureVideoPreviewLayer
-        previewLayer.connection.automaticallyAdjustsVideoMirroring = false
-        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        previewView.layer.insertSublayer(previewLayer, atIndex: 0)
-        
-        // 出力の初期化
-        imageOutput = AVCaptureStillImageOutput()
-        captureSession.addOutput(imageOutput)
-        
-        // セッション開始
-        captureSession.startRunning()
-    }
+
 }

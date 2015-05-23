@@ -19,6 +19,7 @@
 		474CC1C31B1009D9005B8D66 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474CC1C21B1009D9005B8D66 /* AVFoundation.framework */; };
 		474CC1C51B10331F005B8D66 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474CC1C41B10331F005B8D66 /* ImageIO.framework */; };
 		474CC1C71B103327005B8D66 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474CC1C61B103327005B8D66 /* MobileCoreServices.framework */; };
+		474CC1CE1B104CCE005B8D66 /* CameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 474CC1CD1B104CCE005B8D66 /* CameraManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,8 @@
 		474CC1C21B1009D9005B8D66 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		474CC1C41B10331F005B8D66 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		474CC1C61B103327005B8D66 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		474CC1CC1B104CCE005B8D66 /* CameraManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraManager.h; sourceTree = "<group>"; };
+		474CC1CD1B104CCE005B8D66 /* CameraManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraManager.m; sourceTree = "<group>"; };
 		A42D4C2206A5CC442450B235 /* libPods-BeforAfter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeforAfter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -173,6 +176,8 @@
 		474CC1C81B104A0F005B8D66 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				474CC1CC1B104CCE005B8D66 /* CameraManager.h */,
+				474CC1CD1B104CCE005B8D66 /* CameraManager.m */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 				474CC1C01B100960005B8D66 /* CreateGifSampleViewController.swift in Sources */,
 				473662751B0FAC100082953F /* AppDelegate.swift in Sources */,
 				4736629B1B0FB04C0082953F /* TableStyleSampleViewController.swift in Sources */,
+				474CC1CE1B104CCE005B8D66 /* CameraManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
