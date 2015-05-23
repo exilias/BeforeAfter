@@ -13,6 +13,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     
     
+    // MARK: - View cycle
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        BAAPIManager.getTimelineWithSuccess({ (timelines: [AnyObject]!) -> Void in
+            println("\(timelines)")
+            return
+        }, failure: { (error: NSError?) -> Void in
+            println("ERROR: \(error)")
+            return
+        })
+    }
     // MARK: - TableView data source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

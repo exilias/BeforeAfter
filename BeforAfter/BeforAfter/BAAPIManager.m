@@ -48,4 +48,39 @@
     [manager.operationQueue addOperation:operation];
 }
 
+
++ (void)getTimelineWithSuccess:(void (^)(NSArray *timelines))success failure:(void (^)(NSError *error))failure
+{
+    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary* param = @{};
+    
+    // execute post request
+    [manager POST:@"http://yoshitooooom.xtwo.jp/api/get_timeline.php"
+       parameters:param
+          success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         if ([[responseObject valueForKey:@"result"] boolValue]) {
+             NSMutableArray *content_list;
+             
+             // decode json string
+             content_list = [[NSMutableArray alloc]init];
+             [content_list addObjectsFromArray:[responseObject valueForKey:@"content_list"]];
+             
+             if (success) {
+                 success(content_list.copy);
+             }
+         } else {
+             if (success) {
+                 success(@[]);
+             }
+         }
+     }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         if (failure) {
+             failure(error);
+         }
+     }];
+}
+
 @end

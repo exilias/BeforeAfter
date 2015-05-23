@@ -12,5 +12,6 @@
 @interface BAAPIManager : NSObject
 
 + (void)uploadGIFWithPath:(NSString *)path success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
++ (void)getTimelineWithSuccess:(void (^)(NSArray *timelines))success failure:(void (^)(NSError *error))failure;
 
 @end
