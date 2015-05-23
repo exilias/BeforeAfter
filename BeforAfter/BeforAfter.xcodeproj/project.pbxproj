@@ -109,6 +109,7 @@
 			children = (
 				473662941B0FAE440082953F /* Storyboard */,
 				473662741B0FAC100082953F /* AppDelegate.swift */,
+				474CC1C81B104A0F005B8D66 /* Manager */,
 				473662951B0FAE510082953F /* View */,
 				4736627B1B0FAC100082953F /* Images.xcassets */,
 				4736627D1B0FAC100082953F /* LaunchScreen.xib */,
@@ -167,6 +168,13 @@
 				474CC1BF1B100960005B8D66 /* CreateGifSampleViewController.swift */,
 			);
 			name = Sample;
+			sourceTree = "<group>";
+		};
+		474CC1C81B104A0F005B8D66 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Manager;
 			sourceTree = "<group>";
 		};
 		4D595CC1908FE261404D343B /* Frameworks */ = {

@@ -3,3 +3,5 @@
 //
 
 #import <FLAnimatedImage/FLAnimatedImage.h>
+
+#import "CameraManager.h"
