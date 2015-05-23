@@ -64,7 +64,21 @@ class CreateGifSampleViewController: UIViewController {
     
     
     @IBAction func didTouchGifButton(sender: AnyObject) {
-        
+        if let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).last?.stringByAppendingPathComponent("\(arc4random_uniform(20209449)).gif") {
+            let frameProperties: [String: AnyObject] = [kCGImagePropertyGIFDelayTime as String: NSNumber(int: 2)]
+            let gifProperties: [String: AnyObject] = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFLoopCount as String: NSNumber(int: 0)]]
+            
+            let destination = CGImageDestinationCreateWithURL(NSURL(fileURLWithPath: path), kUTTypeGIF, images.count, nil)
+            
+            for image in images {
+                CGImageDestinationAddImage(destination, image.CGImage, frameProperties)
+            }
+            
+            CGImageDestinationSetProperties(destination, gifProperties)
+            CGImageDestinationFinalize(destination)
+            
+            animatedImageView.animatedImage = FLAnimatedImage(GIFData: NSData(contentsOfFile: path))
+        }
     }
     
     
